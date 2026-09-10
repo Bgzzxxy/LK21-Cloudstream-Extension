@@ -25,9 +25,12 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.5'
+          cache-read-only: false
 
       - name: Build Plugins
-        run: gradle make
+        run: gradle make --parallel --build-cache
 
       - name: Deploy to builds branch
         uses: s0/git-publish-subdir-action@develop

@@ -5,10 +5,8 @@ plugins {
 }
 
 cloudstream {
-    setAuthors(listOf("IndostreamDev"))
-    setDescription("Ekstensi LK21 & NontonDrama dengan Auto Extractor")
-    setName("Indostream")
-    setTvTypes(listOf("Movie", "TvSeries"))
+    authors = listOf("IndostreamDev")
+    description = "Ekstensi LK21 & NontonDrama dengan Auto Extractor"
 }
 
 android {

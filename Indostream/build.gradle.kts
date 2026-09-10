@@ -22,6 +22,5 @@ android {
 }
 
 dependencies {
-    val cs3 = "com.github.recloudstream:cloudstream:pre-release"
-    compileOnly(cs3)
+    compileOnly("com.github.recloudstream:cloudstream:-SNAPSHOT")
 }

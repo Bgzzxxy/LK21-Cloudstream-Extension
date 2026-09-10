@@ -1,4 +1,5 @@
 name: Build Cloudstream Extensions
+
 on:
   push:
     branches:
@@ -8,25 +9,26 @@ on:
     branches:
       - master
       - main
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
       - name: Build Plugins
-        uses: recloudstream/cs3-builder@master
+        uses: recloudstream/build-plugins@master
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Cloudstream-Repo
           path: build/

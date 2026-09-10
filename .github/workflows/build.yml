@@ -5,11 +5,10 @@ on:
     branches:
       - master
       - main
-  pull_request:
-    branches:
-      - master
-      - main
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -24,11 +23,16 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Build Plugins
-        uses: recloudstream/build-plugins@master
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
 
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: Cloudstream-Repo
-          path: build/
+      - name: Build Plugins
+        run: gradle make
+
+      - name: Deploy to builds branch
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: builds
+          FOLDER: build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
